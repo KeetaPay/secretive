@@ -33,7 +33,7 @@ struct ContentView<UpdaterType: UpdaterProtocol, AgentStatusCheckerType: AgentSt
         }
         .onAppear {
             if !hasRunSetup {
-                // TODO: Keeta setup
+                setup()
             }
         }
     }
@@ -104,7 +104,7 @@ extension ContentView {
                 Group {
                     if (!hasRunSetup || !agentStatusChecker.running) && !agentStatusChecker.developmentBuild  {
                         Button(action: {
-                            // TODO: Keeta setup
+                            setup()
                         }, label: {
                             Group {
                                 if hasRunSetup && !agentStatusChecker.running {
@@ -159,6 +159,11 @@ extension ContentView {
         }
     }
 
+    func setup() {
+        Task {
+            let success = await setupKeeta()
+        }
+    }
 }
 
 #if DEBUG
