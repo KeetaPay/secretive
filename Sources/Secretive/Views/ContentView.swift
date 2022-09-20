@@ -7,7 +7,6 @@ import Brief
 struct ContentView<UpdaterType: UpdaterProtocol, AgentStatusCheckerType: AgentStatusCheckerProtocol>: View {
 
     @Binding var showingCreation: Bool
-    @Binding var runningSetup: Bool
     @Binding var hasRunSetup: Bool
 
     @EnvironmentObject private var storeList: SecretStoreList
@@ -32,11 +31,12 @@ struct ContentView<UpdaterType: UpdaterProtocol, AgentStatusCheckerType: AgentSt
             appPathNotice
             newItem
         }
-        .sheet(isPresented: $runningSetup) {
-            SetupView(visible: $runningSetup, setupComplete: $hasRunSetup)
+        .onAppear {
+            if !hasRunSetup {
+                // TODO: Keeta setup
+            }
         }
     }
-
 }
 
 extension ContentView {
@@ -102,9 +102,9 @@ extension ContentView {
         return ToolbarItem {
             AnyView(
                 Group {
-                    if (runningSetup || !hasRunSetup || !agentStatusChecker.running) && !agentStatusChecker.developmentBuild  {
+                    if (!hasRunSetup || !agentStatusChecker.running) && !agentStatusChecker.developmentBuild  {
                         Button(action: {
-                            runningSetup = true
+                            // TODO: Keeta setup
                         }, label: {
                             Group {
                                 if hasRunSetup && !agentStatusChecker.running {
@@ -181,13 +181,13 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             // Empty on modifiable and nonmodifiable
-            ContentView<PreviewUpdater, AgentStatusChecker>(showingCreation: .constant(false), runningSetup: .constant(false), hasRunSetup: .constant(true))
+            ContentView<PreviewUpdater, AgentStatusChecker>(showingCreation: .constant(false), hasRunSetup: .constant(true))
                 .environmentObject(Preview.storeList(stores: [Preview.Store(numberOfRandomSecrets: 0)], modifiableStores: [Preview.StoreModifiable(numberOfRandomSecrets: 0)]))
                 .environmentObject(PreviewUpdater())
                 .environmentObject(agentStatusChecker)
 
             // 5 items on modifiable and nonmodifiable
-            ContentView<PreviewUpdater, AgentStatusChecker>(showingCreation: .constant(false), runningSetup: .constant(false), hasRunSetup: .constant(true))
+            ContentView<PreviewUpdater, AgentStatusChecker>(showingCreation: .constant(false), hasRunSetup: .constant(true))
                 .environmentObject(Preview.storeList(stores: [Preview.Store()], modifiableStores: [Preview.StoreModifiable()]))
                 .environmentObject(PreviewUpdater())
                 .environmentObject(agentStatusChecker)
