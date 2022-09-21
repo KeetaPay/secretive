@@ -70,8 +70,8 @@ private func add(_ text: String, to fileURL: URL) -> Bool {
     do {
         handle = try FileHandle(forUpdating: fileURL)
         
-        guard let existing = try handle.readToEnd(),
-              let existingString = String(data: existing, encoding: .utf8) else { return false }
+        let existing = try handle.readToEnd() ?? .init()
+        let existingString = String(data: existing, encoding: .utf8) ?? ""
         
         guard !existingString.contains(text) else { return true }
         
