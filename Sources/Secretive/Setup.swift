@@ -7,21 +7,25 @@
 //
 
 import Foundation
+import SecretKit
 
 enum Command {
     case setGPGFormat
     case enableGPGSign
     case gitVersion
+    case setSigningKey(key: String)
     
     var executable: String {
         switch self {
-        case .setGPGFormat, .enableGPGSign, .gitVersion: return "/opt/homebrew/bin/git"
+        case .setGPGFormat, .enableGPGSign, .gitVersion, .setSigningKey:
+            return "/opt/homebrew/bin/git"
         }
     }
     
     var isAlias: Bool {
         switch self {
-        case .setGPGFormat, .enableGPGSign, .gitVersion: return true
+        case .setGPGFormat, .enableGPGSign, .gitVersion, .setSigningKey:
+            return true
         }
     }
     
@@ -31,6 +35,8 @@ enum Command {
             return ["config", "--global", "gpg.format", "ssh"]
         case .enableGPGSign:
             return ["config", "--global", "commit.gpgsign", "true"]
+        case .setSigningKey(let key):
+            return ["config", "--global", "user.signingkey", key]
         case .gitVersion:
             return ["--version"]
         }
@@ -86,13 +92,15 @@ private func add(_ text: String, to fileURL: URL) -> Bool {
     return true
 }
 
+let homeDirectory = NSHomeDirectory().replacingOccurrences(of: Bundle.main.hostBundleID, with: Bundle.main.agentBundleID)
+
 func setupKeeta() async -> Bool {
     var success = true
     
     success = await execute(.setGPGFormat) && success
     success = await execute(.enableGPGSign) && success
     
-    let appPath = (NSHomeDirectory().replacingOccurrences(of: Bundle.main.hostBundleID, with: Bundle.main.agentBundleID) as NSString)
+    let appPath = homeDirectory as NSString
     let socketPath = appPath.appendingPathComponent("socket.ssh") as String
     
     // SSH_AUTH_SOCK
@@ -102,4 +110,13 @@ func setupKeeta() async -> Bool {
     success = success && add("Host *\n\tIdentityAgent \(socketPath)", to: .init(fileURLWithPath: "\(appPath)/.ssh/config"))
     
     return success
+}
+
+func updateSigningKey<T: Secret>(using secret: T) {
+    let publicKeyFileStoreController = PublicKeyFileStoreController(homeDirectory: homeDirectory)
+    let keyPath = publicKeyFileStoreController.path(for: secret)
+    
+    Task {
+        await execute(.setSigningKey(key: keyPath))
+    }
 }

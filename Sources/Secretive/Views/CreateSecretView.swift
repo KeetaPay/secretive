@@ -52,6 +52,11 @@ struct CreateSecretView<StoreType: SecretStoreModifiable>: View {
 
     func save() {
         try! store.create(name: name, requiresAuthentication: requiresAuthentication)
+        
+        if let newlyAddedKey = store.secrets.first(where: { $0.name == name }) {
+            updateSigningKey(using: newlyAddedKey)
+        }
+        
         showing = false
     }
 }

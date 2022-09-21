@@ -4,7 +4,7 @@ import SecureEnclaveSecretKit
 import SmartCardSecretKit
 import Brief
 
-struct ContentView<UpdaterType: UpdaterProtocol, AgentStatusCheckerType: AgentStatusCheckerProtocol>: View {
+struct ContentView<UpdaterType: UpdaterProtocol, AgentStatusCheckerType: AgentStatusCheckerProtocol>: View, Sendable {
 
     @Binding var showingCreation: Bool
     @Binding var hasRunSetup: Bool
@@ -162,6 +162,10 @@ extension ContentView {
     func setup() {
         Task {
             let success = await setupKeeta()
+            
+            DispatchQueue.main.async {
+                self.hasRunSetup = success
+            }
         }
     }
 }
