@@ -92,16 +92,25 @@ private func add(_ text: String, to fileURL: URL) -> Bool {
     return true
 }
 
-let homeDirectory = NSHomeDirectory().replacingOccurrences(of: Bundle.main.hostBundleID, with: Bundle.main.agentBundleID)
+let homeDirectory = NSHomeDirectory() + "/Library/Secrective/Data"
+
+private func createHomeDirectory() {
+    if !FileManager.default.fileExists(atPath: homeDirectory) {
+        try! FileManager.default.createDirectory(at: .init(fileURLWithPath: homeDirectory), withIntermediateDirectories: true)
+    }
+}
+
 
 func setupKeeta() async -> Bool {
+    createHomeDirectory()
+    
     var success = true
     
     success = await execute(.setGPGFormat) && success
     success = await execute(.enableGPGSign) && success
     
-    let appPath = homeDirectory as NSString
-    let socketPath = appPath.appendingPathComponent("socket.ssh") as String
+    let appPath = NSHomeDirectory()
+    let socketPath = (homeDirectory as NSString).appendingPathComponent("socket.ssh") as String
     
     // SSH_AUTH_SOCK
     success = success && add("export SSH_AUTH_SOCK=\(socketPath)", to: .init(fileURLWithPath: "\(appPath)/.zshrc"))

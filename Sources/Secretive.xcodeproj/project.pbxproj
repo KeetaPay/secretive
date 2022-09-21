@@ -680,7 +680,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1;
-				PRODUCT_BUNDLE_IDENTIFIER = dsc.Secretive.Host;
+				PRODUCT_BUNDLE_IDENTIFIER = lfg.Secretive.Host;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -838,7 +838,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1;
-				PRODUCT_BUNDLE_IDENTIFIER = dsc.Secretive.Host;
+				PRODUCT_BUNDLE_IDENTIFIER = lfg.Secretive.Host;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -881,7 +881,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1;
-				PRODUCT_BUNDLE_IDENTIFIER = dsc.Secretive.SecretAgent;
+				PRODUCT_BUNDLE_IDENTIFIER = lfg.Secretive.SecretAgent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -904,7 +904,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.dsc.Secretive.SecretAgent;
+				PRODUCT_BUNDLE_IDENTIFIER = lfg.Secretive.SecretAgent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
