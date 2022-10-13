@@ -100,7 +100,7 @@ extension SecureEnclave {
             reloadSecrets()
         }
         
-        public func sign(data: Data, with secret: SecretType, for provenance: SigningRequestProvenance) throws -> Data {
+        public func sign(data: Data, with secret: SecretType, for provenance: SigningRequestProvenance, isRaw: Bool) throws -> Data {
             let context: LAContext
             if let existing = persistedAuthenticationContexts[secret], existing.valid {
                 context = existing.context
@@ -130,8 +130,10 @@ extension SecureEnclave {
             }
             let key = untypedSafe as! SecKey
             var signError: SecurityError?
-
-            guard let signature = SecKeyCreateSignature(key, .ecdsaSignatureMessageX962SHA256, data as CFData, &signError) else {
+            
+            let algorithm: SecKeyAlgorithm = isRaw ? .ecdsaSignatureDigestX962 : .ecdsaSignatureMessageX962SHA256
+            
+            guard let signature = SecKeyCreateSignature(key, algorithm, data as CFData, &signError) else {
                 throw SigningError(error: signError)
             }
             return signature as Data

@@ -112,7 +112,8 @@ extension Agent {
         }
 
         let dataToSign = reader.readNextChunk()
-        let signed = try store.sign(data: dataToSign, with: secret, for: provenance)
+        let flags = reader.readNextInt()
+        let signed = try store.sign(data: dataToSign, with: secret, for: provenance, isRaw: flags == 0x40000000)
         let derSignature = signed
 
         let curveData = writer.curveType(for: secret.algorithm, length: secret.keySize).data(using: .utf8)!
