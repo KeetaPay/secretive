@@ -12,6 +12,9 @@ public class Agent {
     private let writer = OpenSSHKeyWriter()
     private let requestTracer = SigningRequestTracer()
 
+    private var consumedData = Data()
+    private var expectedSize = 0
+    
     /// Initializes an agent with a store list and a witness.
     /// - Parameters:
     ///   - storeList: The `SecretStoreList` to make available.
@@ -21,7 +24,26 @@ public class Agent {
         self.storeList = storeList
         self.witness = witness
     }
+}
+
+extension Data {
+    mutating func extractFirst() -> UInt8 {
+        let result = self[0]
+        self = dropFirst()
+        return result
+    }
     
+    mutating func extractFirst(_ k: Int) -> Data {
+        let range = 0..<k
+        let subData = subdata(in: range)
+        removeSubrange(range)
+        return subData
+    }
+    
+    var length: Int {
+        let littleEndianLength = withUnsafeBytes { $0.load(as: UInt32.self) }
+        return Int(littleEndianLength.bigEndian)
+    }
 }
 
 extension Agent {
@@ -34,18 +56,40 @@ extension Agent {
     ///   - Boolean if data could be read
     @discardableResult public func handle(reader: FileHandleReader, writer: FileHandleWriter) -> Bool {
         Logger().debug("Agent handling new data")
-        let data = Data(reader.availableData)
-        guard data.count > 4 else { return false}
-        let requestTypeInt = data[4]
+        
+        let sizeLength = 4
+        
+        let newData = reader.availableData
+        guard !newData.isEmpty else { return false }
+        consumedData.append(newData)
+        
+        if expectedSize == 0 {
+            guard consumedData.count >= sizeLength else { return true }
+            let sizeData = consumedData.extractFirst(sizeLength)
+            let size = sizeData.length
+            expectedSize = Int(size)
+        }
+        
+        guard consumedData.count >= expectedSize else { return true }
+        
+        var payload = consumedData.extractFirst(expectedSize)
+        
+        let requestTypeInt = payload.extractFirst()
+        
         guard let requestType = SSHAgent.RequestType(rawValue: requestTypeInt) else {
             writer.write(OpenSSHKeyWriter().lengthAndData(of: SSHAgent.ResponseType.agentFailure.data))
             Logger().debug("Agent returned \(SSHAgent.ResponseType.agentFailure.debugDescription)")
+            consumedData = Data()
+            expectedSize = 0
             return true
         }
+        
         Logger().debug("Agent handling request of type \(requestType.debugDescription)")
-        let subData = Data(data[5...])
-        let response = handle(requestType: requestType, data: subData, reader: reader)
+        let response = handle(requestType: requestType, data: payload, reader: reader)
         writer.write(response)
+        
+        expectedSize = 0
+        
         return true
     }
 
