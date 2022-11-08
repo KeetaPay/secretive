@@ -59,3 +59,5 @@ Because secrets in the Secure Enclave are not exportable, they are not able to b
 ## Security
 
 If you discover any vulnerabilities in this project, please notify [max.goedjen@gmail.com](mailto:max.goedjen@gmail.com) with the subject containing "SECRETIVE SECURITY."
+
+
