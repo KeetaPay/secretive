@@ -27,4 +27,15 @@ public class OpenSSHReader {
         return ret
     }
 
+    public func readNextInt() -> Int {
+        guard remaining.count >= 4 else { return 0 }
+        
+        var result = 0
+        result |= (Int(remaining[0]) << 24)
+        result |= (Int(remaining[1]) << 16)
+        result |= (Int(remaining[2]) << 8)
+        result |=  Int(remaining[3])
+        
+        return result
+    }
 }

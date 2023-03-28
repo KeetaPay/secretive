@@ -31,9 +31,7 @@
 		50617D8A23FCE48E0099B055 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50617D8923FCE48E0099B055 /* Preview Assets.xcassets */; };
 		50617D9923FCE48E0099B055 /* SecretiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50617D9823FCE48E0099B055 /* SecretiveTests.swift */; };
 		50617DD223FCEFA90099B055 /* PreviewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50617DD123FCEFA90099B055 /* PreviewStore.swift */; };
-		5066A6C22516F303004B5A36 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5066A6C12516F303004B5A36 /* SetupView.swift */; };
 		5066A6C82516FE6E004B5A36 /* CopyableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5066A6C72516FE6E004B5A36 /* CopyableView.swift */; };
-		5066A6F7251829B1004B5A36 /* ShellConfigurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5066A6F6251829B1004B5A36 /* ShellConfigurationController.swift */; };
 		506772C72424784600034DED /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 506772C62424784600034DED /* Credits.rtf */; };
 		506772C92425BB8500034DED /* NoStoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506772C82425BB8500034DED /* NoStoresView.swift */; };
 		5079BA0F250F29BF00EA86F4 /* StoreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5079BA0E250F29BF00EA86F4 /* StoreListView.swift */; };
@@ -50,6 +48,7 @@
 		50B8550D24138C4F009958AC /* DeleteSecretView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B8550C24138C4F009958AC /* DeleteSecretView.swift */; };
 		50BB046B2418AAAE00D6E079 /* EmptyStoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BB046A2418AAAE00D6E079 /* EmptyStoreView.swift */; };
 		50C385A52407A76D00AF2719 /* SecretDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C385A42407A76D00AF2719 /* SecretDetailView.swift */; };
+		B97C777328DA64D8006E0C30 /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97C777228DA64D8006E0C30 /* Setup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,9 +122,7 @@
 		50617D9823FCE48E0099B055 /* SecretiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretiveTests.swift; sourceTree = "<group>"; };
 		50617D9A23FCE48E0099B055 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50617DD123FCEFA90099B055 /* PreviewStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewStore.swift; sourceTree = "<group>"; };
-		5066A6C12516F303004B5A36 /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
 		5066A6C72516FE6E004B5A36 /* CopyableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyableView.swift; sourceTree = "<group>"; };
-		5066A6F6251829B1004B5A36 /* ShellConfigurationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellConfigurationController.swift; sourceTree = "<group>"; };
 		506772C62424784600034DED /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		506772C82425BB8500034DED /* NoStoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoStoresView.swift; sourceTree = "<group>"; };
 		5079BA0E250F29BF00EA86F4 /* StoreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListView.swift; sourceTree = "<group>"; };
@@ -147,6 +144,7 @@
 		50B8550C24138C4F009958AC /* DeleteSecretView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteSecretView.swift; sourceTree = "<group>"; };
 		50BB046A2418AAAE00D6E079 /* EmptyStoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStoreView.swift; sourceTree = "<group>"; };
 		50C385A42407A76D00AF2719 /* SecretDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretDetailView.swift; sourceTree = "<group>"; };
+		B97C777228DA64D8006E0C30 /* Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				50617D8223FCE48E0099B055 /* App.swift */,
+				B97C777228DA64D8006E0C30 /* Setup.swift */,
 				508A58B0241ED1C40069DC07 /* Views */,
 				508A58B1241ED1EA0069DC07 /* Controllers */,
 				50033AC427813F1C00253856 /* Helpers */,
@@ -273,7 +272,6 @@
 				50BB046A2418AAAE00D6E079 /* EmptyStoreView.swift */,
 				506772C82425BB8500034DED /* NoStoresView.swift */,
 				50153E1F250AFCB200525160 /* UpdateView.swift */,
-				5066A6C12516F303004B5A36 /* SetupView.swift */,
 				5066A6C72516FE6E004B5A36 /* CopyableView.swift */,
 			);
 			path = Views;
@@ -286,7 +284,6 @@
 				5091D2BB25183B830049FD9B /* ApplicationDirectoryController.swift */,
 				50571E0224393C2600F76F6C /* JustUpdatedChecker.swift */,
 				50571E0424393D1500F76F6C /* LaunchAgentController.swift */,
-				5066A6F6251829B1004B5A36 /* ShellConfigurationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -474,16 +471,15 @@
 			files = (
 				2C4A9D2F2636FFD3008CC8E2 /* RenameSecretView.swift in Sources */,
 				5091D2BC25183B830049FD9B /* ApplicationDirectoryController.swift in Sources */,
-				5066A6C22516F303004B5A36 /* SetupView.swift in Sources */,
 				50617D8523FCE48E0099B055 /* ContentView.swift in Sources */,
 				50571E0324393C2600F76F6C /* JustUpdatedChecker.swift in Sources */,
 				5079BA0F250F29BF00EA86F4 /* StoreListView.swift in Sources */,
 				50617DD223FCEFA90099B055 /* PreviewStore.swift in Sources */,
-				5066A6F7251829B1004B5A36 /* ShellConfigurationController.swift in Sources */,
 				50033AC327813F1700253856 /* BundleIDs.swift in Sources */,
 				508A58B3241ED2180069DC07 /* AgentStatusChecker.swift in Sources */,
 				50C385A52407A76D00AF2719 /* SecretDetailView.swift in Sources */,
 				5099A02423FD2AAA0062B6F2 /* CreateSecretView.swift in Sources */,
+				B97C777328DA64D8006E0C30 /* Setup.swift in Sources */,
 				50153E20250AFCB200525160 /* UpdateView.swift in Sources */,
 				50571E0524393D1500F76F6C /* LaunchAgentController.swift in Sources */,
 				5066A6C82516FE6E004B5A36 /* CopyableView.swift in Sources */,
@@ -675,7 +671,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Secretive/Preview Content\"";
-				DEVELOPMENT_TEAM = Z72PRUAWF6;
+				DEVELOPMENT_TEAM = 2BG69HN56W;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Secretive/Info.plist;
@@ -684,7 +680,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.maxgoedjen.Secretive.Host;
+				PRODUCT_BUNDLE_IDENTIFIER = com.keeta.Secretive.Host;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -697,12 +693,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Secretive/Secretive.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Secretive/Preview Content\"";
-				DEVELOPMENT_TEAM = Z72PRUAWF6;
+				DEVELOPMENT_TEAM = 2BG69HN56W;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Secretive/Info.plist;
@@ -711,9 +707,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.maxgoedjen.Secretive.Host;
+				PRODUCT_BUNDLE_IDENTIFIER = com.keeta.Secretive.Host;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Secretive - Host";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -830,10 +826,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Secretive/Preview Content\"";
+				DEVELOPMENT_TEAM = 2BG69HN56W;
 				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Secretive/Info.plist;
@@ -842,8 +840,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.maxgoedjen.Secretive.Host;
+				PRODUCT_BUNDLE_IDENTIFIER = com.keeta.Secretive.Host;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Test;
@@ -874,9 +873,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SecretAgent/Preview Content\"";
+				DEVELOPMENT_TEAM = 2BG69HN56W;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SecretAgent/Info.plist;
@@ -885,8 +886,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.maxgoedjen.Secretive.SecretAgent;
+				PRODUCT_BUNDLE_IDENTIFIER = com.keeta.Secretive.SecretAgent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Test;
@@ -899,7 +901,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SecretAgent/Preview Content\"";
-				DEVELOPMENT_TEAM = Z72PRUAWF6;
+				DEVELOPMENT_TEAM = 2BG69HN56W;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SecretAgent/Info.plist;
@@ -908,7 +910,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.maxgoedjen.Secretive.SecretAgent;
+				PRODUCT_BUNDLE_IDENTIFIER = com.keeta.Secretive.SecretAgent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -919,11 +921,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SecretAgent/SecretAgent.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SecretAgent/Preview Content\"";
-				DEVELOPMENT_TEAM = Z72PRUAWF6;
+				DEVELOPMENT_TEAM = 2BG69HN56W;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SecretAgent/Info.plist;
@@ -932,9 +934,9 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.maxgoedjen.Secretive.SecretAgent;
+				PRODUCT_BUNDLE_IDENTIFIER = com.keeta.Secretive.SecretAgent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Secretive - Secret Agent";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

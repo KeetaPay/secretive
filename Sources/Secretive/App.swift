@@ -18,20 +18,14 @@ struct Secretive: App {
     private let justUpdatedChecker = JustUpdatedChecker()
 
     @AppStorage("defaultsHasRunSetup") var hasRunSetup = false
-    @State private var showingSetup = false
     @State private var showingCreation = false
 
     @SceneBuilder var body: some Scene {
         WindowGroup {
-            ContentView<Updater, AgentStatusChecker>(showingCreation: $showingCreation, runningSetup: $showingSetup, hasRunSetup: $hasRunSetup)
+            ContentView<Updater, AgentStatusChecker>(showingCreation: $showingCreation, hasRunSetup: $hasRunSetup)
                 .environmentObject(storeList)
                 .environmentObject(Updater(checkOnLaunch: hasRunSetup))
                 .environmentObject(agentStatusChecker)
-                .onAppear {
-                    if !hasRunSetup {
-                        showingSetup = true
-                    }
-                }
                 .onReceive(NotificationCenter.default.publisher(for: NSApplication.didBecomeActiveNotification)) { _ in
                     guard hasRunSetup else { return }
                     agentStatusChecker.check()
@@ -53,11 +47,6 @@ struct Secretive: App {
             CommandGroup(replacing: .help) {
                 Button("Help") {
                     NSWorkspace.shared.open(Constants.helpURL)
-                }
-            }
-            CommandGroup(after: .help) {
-                Button("Setup Secretive") {
-                    showingSetup = true
                 }
             }
             SidebarCommands()

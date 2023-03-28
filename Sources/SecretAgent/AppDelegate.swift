@@ -18,18 +18,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
     private let updater = Updater(checkOnLaunch: false)
     private let notifier = Notifier()
-    private let publicKeyFileStoreController = PublicKeyFileStoreController(homeDirectory: NSHomeDirectory())
+    private let homeDirectory = NSHomeDirectory() + "/Library/Secrective/Data"
+    
+    private lazy var publicKeyFileStoreController = PublicKeyFileStoreController(homeDirectory: homeDirectory)
     private lazy var agent: Agent = {
         Agent(storeList: storeList, witness: notifier)
     }()
     private lazy var socketController: SocketController = {
-        let path = (NSHomeDirectory() as NSString).appendingPathComponent("socket.ssh") as String
+        let path = (homeDirectory as NSString).appendingPathComponent("socket.ssh") as String
         return SocketController(path: path)
     }()
     private var updateSink: AnyCancellable?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         Logger().debug("SecretAgent finished launching")
+        
+        if !FileManager.default.fileExists(atPath: homeDirectory) {
+            try! FileManager.default.createDirectory(at: .init(fileURLWithPath: homeDirectory), withIntermediateDirectories: true)
+        }
+        
         DispatchQueue.main.async {
             self.socketController.handler = self.agent.handle(reader:writer:)
         }
